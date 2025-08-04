@@ -63,7 +63,6 @@ const Market = () => {
 
   return (
     <div className="relative container mx-auto p-4">
-      {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
@@ -74,11 +73,7 @@ const Market = () => {
         
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          
-          {/* Selection Mode Toggle */}
-          <button
-            onClick={() => setIsSelectionMode(!isSelectionMode)}
-            className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+          <button  onClick={() => setIsSelectionMode(!isSelectionMode)} className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
               isSelectionMode 
                 ? 'bg-blue-500 text-white shadow-lg' 
                 : 'bg-white/70 dark:bg-gray-800/70 text-gray-700 dark:text-gray-200 backdrop-blur-sm border border-gray-200 dark:border-gray-600 hover:bg-white/90 dark:hover:bg-gray-800/90'
@@ -86,8 +81,6 @@ const Market = () => {
           >
             {isSelectionMode ? 'Exit Selection' : 'Select Items'}
           </button>
-          
-          {/* Cart */}
           <div
             className="relative cursor-pointer p-3 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-full border border-gray-200 dark:border-gray-600 hover:bg-white/90 dark:hover:bg-gray-800/90 transition-all duration-200"
             onClick={() => {
@@ -103,8 +96,6 @@ const Market = () => {
           </div>
         </div>
       </div>
-
-      {/* Selection Controls */}
       {isSelectionMode && (
         <div className="mb-6 p-4 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-200 dark:border-gray-600">
           <div className="flex items-center justify-between">
@@ -112,10 +103,7 @@ const Market = () => {
               {selectedItems.length} items selected
             </span>
             <div className="flex gap-2">
-              <button
-                onClick={addSelectedToCart}
-                disabled={selectedItems.length === 0}
-                className="px-4 py-2 bg-green-500 hover:bg-green-600 disabled:bg-gray-400 text-white rounded-lg font-medium transition-colors duration-200 disabled:cursor-not-allowed"
+              <button  onClick={addSelectedToCart} disabled={selectedItems.length === 0} className="px-4 py-2 bg-green-500 hover:bg-green-600 disabled:bg-gray-400 text-white rounded-lg font-medium transition-colors duration-200 disabled:cursor-not-allowed"
               >
                 Add to Cart ({selectedItems.length})
               </button>
@@ -129,15 +117,9 @@ const Market = () => {
           </div>
         </div>
       )}
-
-      {/* Search */}
       <div className="mb-8">
         <div className="relative max-w-md mx-auto">
-          <input
-            type="text"
-            placeholder="Search products..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+          <input  type="text"  placeholder="Search products..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full p-4 pl-6 pr-12 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border border-gray-200 dark:border-gray-600 rounded-xl text-gray-700 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-all duration-200"
           />
           <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400">
@@ -145,22 +127,16 @@ const Market = () => {
           </div>
         </div>
       </div>
-
-      {/* Products Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {filteredProducts.map((item) => (
-          <div 
-            key={item.id} 
-            className={`group relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border border-gray-200 dark:border-gray-600 shadow-lg rounded-2xl p-6 hover:shadow-2xl hover:scale-105 transition-all duration-300 ${
+          <div   key={item.id} 
+  className={`group relative bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm border border-gray-200 dark:border-gray-600 shadow-lg rounded-2xl p-6 hover:shadow-2xl hover:scale-105 transition-all duration-300 ${
               selectedItems.includes(item.id) ? 'ring-2 ring-blue-500 dark:ring-blue-400' : ''
             }`}
           >
-            {/* Selection Checkbox */}
             {isSelectionMode && (
               <div className="absolute top-4 left-4 z-10">
-                <button
-                  onClick={() => toggleSelection(item.id)}
-                  className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 ${
+                <button onClick={() => toggleSelection(item.id)} className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 ${
                     selectedItems.includes(item.id)
                       ? 'bg-blue-500 text-white'
                       : 'bg-white/80 dark:bg-gray-700/80 border-2 border-gray-300 dark:border-gray-500'
@@ -170,10 +146,7 @@ const Market = () => {
                 </button>
               </div>
             )}
-
-            {/* Favorite Button */}
-            <button
-              onClick={() => toggleFavorite(item.id)}
+            <button onClick={() => toggleFavorite(item.id)}
               className="absolute top-4 right-4 p-2 rounded-full bg-white/80 dark:bg-gray-700/80 hover:bg-white dark:hover:bg-gray-700 transition-all duration-200 z-10"
             >
               {favorites.includes(item.id) ? (
@@ -182,8 +155,6 @@ const Market = () => {
                 <FaRegHeart className="text-gray-400 hover:text-red-500" size={16} />
               )}
             </button>
-
-            {/* Product Image */}
             <div className="relative mb-4 overflow-hidden rounded-xl">
               <img
                 src={item.thumbnail || item.image}
@@ -193,7 +164,6 @@ const Market = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
 
-            {/* Product Info */}
             <div className="space-y-3">
               <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 line-clamp-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
                 {item.title}
@@ -215,13 +185,10 @@ const Market = () => {
                   )}
                 </div>
                 
-                <div className="flex items-center gap-1 text-yellow-500">
-                  ⭐ <span className="text-sm text-gray-600 dark:text-gray-300">{item.rating}</span>
-                </div>
+               
               </div>
 
-              <button
-                onClick={() => addToCart(item)}
+              <button  onClick={() => addToCart(item)}
                 disabled={isSelectionMode}
                 className="w-full bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 disabled:from-gray-400 disabled:to-gray-500 text-white py-3 px-4 rounded-xl font-medium transition-all duration-200 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
               >
@@ -231,37 +198,27 @@ const Market = () => {
           </div>
         ))}
       </div>
-
-      {/* Cart Modal */}
       {showCart && cart.length > 0 && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center z-50 p-4">
           <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-lg shadow-2xl border border-gray-200 dark:border-gray-600 rounded-2xl w-full max-w-md max-h-[80vh] overflow-hidden">
-            {/* Cart Header */}
             <div className="p-6 border-b border-gray-200 dark:border-gray-600">
               <div className="flex items-center justify-between">
                 <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 flex items-center gap-3">
                   🛒 Cart ({cart.length})
                 </h3>
-                <button
-                  onClick={() => setShowCart(false)}
-                  className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors duration-200"
+                <button  onClick={() => setShowCart(false)} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors duration-200"
                 >
                   <FaTimes className="text-gray-500 dark:text-gray-400" />
                 </button>
               </div>
             </div>
-
-            {/* Cart Items */}
             <div className="overflow-y-auto max-h-96 p-4">
               {cart.map((item, index) => (
                 <div
                   key={index}
                   className="flex items-center gap-4 py-4 border-b border-gray-100 dark:border-gray-700 last:border-b-0"
                 >
-                  <img
-                    src={item.thumbnail || item.image}
-                    alt={item.title}
-                    className="w-16 h-16 object-cover rounded-xl"
+                  <img src={item.thumbnail || item.image} alt={item.title} className="w-16 h-16 object-cover rounded-xl"
                   />
                   <div className="flex-1 min-w-0">
                     <h4 className="font-semibold text-gray-800 dark:text-gray-100 truncate">
@@ -271,17 +228,13 @@ const Market = () => {
                       ${item.price}
                     </p>
                   </div>
-                  <button
-                    onClick={() => removeFromCart(index)}
-                    className="p-2 bg-red-500 hover:bg-red-600 text-white rounded-full transition-colors duration-200 flex items-center justify-center"
+                  <button onClick={() => removeFromCart(index)} className="p-2 bg-red-500 hover:bg-red-600 text-white rounded-full transition-colors duration-200 flex items-center justify-center"
                   >
                     <FaTimes size={12} />
                   </button>
                 </div>
               ))}
             </div>
-
-            {/* Cart Footer */}
             <div className="p-6 border-t border-gray-200 dark:border-gray-600">
               <div className="flex items-center justify-between mb-4">
                 <span className="text-lg font-semibold text-gray-800 dark:text-gray-100">
@@ -303,3 +256,4 @@ const Market = () => {
 }
 
 export default Market
+
